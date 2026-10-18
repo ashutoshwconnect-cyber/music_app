@@ -36,5 +36,3 @@ class MusicApp extends StatelessWidget {
   }
 }
 
-// Alias for MyApp to support both class names
-typedef MyApp = MusicApp;
