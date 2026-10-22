@@ -11,11 +11,7 @@ class TrackTile extends StatelessWidget {
   final TrackModel track;
   final List<TrackModel> playlist;
 
-  const TrackTile({
-    super.key,
-    required this.track,
-    required this.playlist,
-  });
+  const TrackTile({super.key, required this.track, required this.playlist});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +87,9 @@ class TrackTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 13,
-                      color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.65),
+                      color: theme.textTheme.bodyMedium?.color?.withValues(
+                        alpha: 0.65,
+                      ),
                     ),
                   ),
                 ],
@@ -114,7 +112,9 @@ class TrackTile extends StatelessWidget {
                 track.formattedDuration,
                 style: TextStyle(
                   fontSize: 12,
-                  color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.5),
+                  color: theme.textTheme.bodyMedium?.color?.withValues(
+                    alpha: 0.5,
+                  ),
                 ),
               ),
 
@@ -122,7 +122,9 @@ class TrackTile extends StatelessWidget {
             IconButton(
               icon: Icon(
                 isFav ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-                color: isFav ? Colors.redAccent : theme.iconTheme.color?.withValues(alpha: 0.4),
+                color: isFav
+                    ? Colors.redAccent
+                    : theme.iconTheme.color?.withValues(alpha: 0.4),
                 size: 20,
               ),
               onPressed: () {

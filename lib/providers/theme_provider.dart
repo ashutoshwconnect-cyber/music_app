@@ -3,7 +3,7 @@ import 'package:music_player/themes/dark_mode.dart';
 import 'package:music_player/themes/light_mode.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = darkMode;
+  ThemeData _themeData = lightMode;
 
   ThemeData get theme => _themeData;
 

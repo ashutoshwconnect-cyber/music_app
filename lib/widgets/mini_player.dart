@@ -26,17 +26,17 @@ class MiniPlayer extends StatelessWidget {
     // Calculate playback progress ratio (between 0.0 and 1.0)
     double progress = 0.0;
     if (duration.inMilliseconds > 0) {
-      progress = (position.inMilliseconds / duration.inMilliseconds).clamp(0.0, 1.0);
+      progress = (position.inMilliseconds / duration.inMilliseconds).clamp(
+        0.0,
+        1.0,
+      );
     }
 
     return GestureDetector(
       onTap: () {
         // Open full player screen
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const NowPlayingScreen(),
-          ),
-        );
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const NowPlayingScreen()));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -60,12 +60,19 @@ class MiniPlayer extends StatelessWidget {
               LinearProgressIndicator(
                 value: progress,
                 minHeight: 2.5,
-                backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.15),
-                valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
+                backgroundColor: theme.colorScheme.primary.withValues(
+                  alpha: 0.15,
+                ),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  theme.colorScheme.primary,
+                ),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 8,
+                ),
                 child: Row(
                   children: [
                     // Artwork thumbnail
@@ -117,7 +124,8 @@ class MiniPlayer extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 12,
-                              color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.65),
+                              color: theme.textTheme.bodyMedium?.color
+                                  ?.withValues(alpha: 0.65),
                             ),
                           ),
                         ],

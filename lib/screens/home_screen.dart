@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:music_player/providers/music_provider.dart';
@@ -24,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _scrollController.addListener(_onScroll);
 
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final musicProvider = context.read<MusicProvider>();
       if (musicProvider.tracks.isEmpty && !musicProvider.isLoading) {
@@ -32,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
   }
-
 
   void _onScroll() {
     if (!_scrollController.hasClients) return;
@@ -65,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
       child: Scaffold(
+        drawer: Drawer(),
         appBar: AppBar(
           title: Row(
             children: [
@@ -80,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             // Favorites screen shortcut
             IconButton(
-              tooltip: 'Favorite Songs',
               icon: const Icon(Icons.favorite_rounded, color: Colors.redAccent),
               onPressed: () {
                 Navigator.of(context).push(
@@ -90,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             // Light/Dark Theme toggle
             IconButton(
-              tooltip: themeProvider.isDarkMode ? 'Light Mode' : 'Dark Mode',
               icon: Icon(
                 themeProvider.isDarkMode
                     ? Icons.light_mode_rounded
@@ -98,6 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onPressed: () {
                 themeProvider.toggleTheme();
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.login_outlined),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
               },
             ),
           ],
@@ -133,12 +137,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-      
+
             // Main Song List View / States
-            Expanded(
-              child: _buildBody(musicProvider),
-            ),
-      
+            Expanded(child: _buildBody(musicProvider)),
+
             // Docked Mini Player
             const MiniPlayer(),
           ],
@@ -150,9 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBody(MusicProvider musicProvider) {
     // 1. Initial Loading State
     if (musicProvider.isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     // 2. Error State
@@ -176,7 +176,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Icon(
                 Icons.search_off_rounded,
                 size: 64,
-                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+                color: Theme.of(context).colorScheme.primary
+                    .withValues(alpha: 0.5),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -189,7 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
-                  color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+                  color: Theme.of(context).textTheme.bodyMedium?.color
+                      ?.withValues(alpha: 0.6),
                 ),
               ),
             ],
@@ -222,7 +224,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               );
-            } else if (!musicProvider.hasMore && musicProvider.tracks.isNotEmpty) {
+            } else if (!musicProvider.hasMore &&
+                musicProvider.tracks.isNotEmpty) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
@@ -230,10 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     "You've reached the end of the list",
                     style: TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.color
+                      color: Theme.of(context).textTheme.bodyMedium?.color
                           ?.withValues(alpha: 0.4),
                     ),
                   ),
@@ -246,10 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Song tile item
           final track = musicProvider.tracks[index];
-          return TrackTile(
-            track: track,
-            playlist: musicProvider.tracks,
-          );
+          return TrackTile(track: track, playlist: musicProvider.tracks);
         },
       ),
     );

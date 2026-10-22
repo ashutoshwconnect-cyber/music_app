@@ -15,7 +15,6 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
   // Local state for dragging the slider smoothly
   double? _dragValue;
 
-
   String _formatDuration(Duration duration) {
     final minutes = duration.inMinutes;
     final seconds = duration.inSeconds % 60;
@@ -80,7 +79,9 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight - 24),
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight - 24,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -93,7 +94,9 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                           borderRadius: BorderRadius.circular(24),
                           boxShadow: [
                             BoxShadow(
-                              color: theme.colorScheme.primary.withValues(alpha: 0.25),
+                              color: theme.colorScheme.primary.withValues(
+                                alpha: 0.25,
+                              ),
                               blurRadius: 24,
                               offset: const Offset(0, 12),
                             ),
@@ -107,12 +110,19 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) => Container(
                                     color: theme.colorScheme.surface,
-                                    child: const Icon(Icons.music_note, size: 80),
+                                    child: const Icon(
+                                      Icons.music_note,
+                                      size: 80,
+                                    ),
                                   ),
-                                  errorWidget: (context, url, error) => Container(
-                                    color: theme.colorScheme.surface,
-                                    child: const Icon(Icons.music_note, size: 80),
-                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Container(
+                                        color: theme.colorScheme.surface,
+                                        child: const Icon(
+                                          Icons.music_note,
+                                          size: 80,
+                                        ),
+                                      ),
                                 )
                               : Container(
                                   color: theme.colorScheme.surface,
@@ -142,7 +152,8 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
-                            color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
+                            color: theme.textTheme.bodyMedium?.color
+                                ?.withValues(alpha: 0.7),
                           ),
                         ),
                         if (currentTrack.albumName.isNotEmpty) ...[
@@ -153,7 +164,8 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                             style: TextStyle(
                               fontSize: 13,
                               fontStyle: FontStyle.italic,
-                              color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.5),
+                              color: theme.textTheme.bodyMedium?.color
+                                  ?.withValues(alpha: 0.5),
                             ),
                           ),
                         ],
@@ -187,12 +199,15 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                             children: [
                               // Current playback elapsed time
                               Text(
-                                _formatDuration(_dragValue != null
-                                    ? Duration(seconds: _dragValue!.toInt())
-                                    : position),
+                                _formatDuration(
+                                  _dragValue != null
+                                      ? Duration(seconds: _dragValue!.toInt())
+                                      : position,
+                                ),
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+                                  color: theme.textTheme.bodyMedium?.color
+                                      ?.withValues(alpha: 0.6),
                                 ),
                               ),
                               // Total song duration
@@ -200,7 +215,8 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                                 _formatDuration(duration),
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+                                  color: theme.textTheme.bodyMedium?.color
+                                      ?.withValues(alpha: 0.6),
                                 ),
                               ),
                             ],
@@ -244,7 +260,9 @@ class _NowPlayingScreenState extends State<NowPlayingScreen> {
                             color: theme.colorScheme.primary,
                             boxShadow: [
                               BoxShadow(
-                                color: theme.colorScheme.primary.withValues(alpha: 0.4),
+                                color: theme.colorScheme.primary.withValues(
+                                  alpha: 0.4,
+                                ),
                                 blurRadius: 16,
                                 offset: const Offset(0, 6),
                               ),

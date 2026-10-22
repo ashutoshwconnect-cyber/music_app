@@ -1,11 +1,11 @@
 import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:music_player/models/track_model.dart';
 
 class StorageService {
   static const String _favoritesKey = 'favorite_tracks';
   static const String _themeKey = 'is_dark_mode';
-
 
   /// Save favorite tracks list
   static Future<void> saveFavorites(List<TrackModel> favorites) async {
