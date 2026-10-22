@@ -25,7 +25,9 @@ class FavoritesScreen extends StatelessWidget {
                   '${favorites.length} songs',
                   style: TextStyle(
                     fontSize: 13,
-                    color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+                    color: theme.textTheme.bodyMedium?.color?.withValues(
+                      alpha: 0.6,
+                    ),
                   ),
                 ),
               ),
@@ -45,7 +47,9 @@ class FavoritesScreen extends StatelessWidget {
                           Icon(
                             Icons.favorite_border_rounded,
                             size: 64,
-                            color: theme.colorScheme.primary.withValues(alpha: 0.4),
+                            color: theme.colorScheme.primary.withValues(
+                              alpha: 0.4,
+                            ),
                           ),
                           const SizedBox(height: 16),
                           const Text(
@@ -61,7 +65,8 @@ class FavoritesScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 14,
-                              color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.6),
+                              color: theme.textTheme.bodyMedium?.color
+                                  ?.withValues(alpha: 0.6),
                             ),
                           ),
                         ],
@@ -73,10 +78,7 @@ class FavoritesScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     itemBuilder: (context, index) {
                       final track = favorites[index];
-                      return TrackTile(
-                        track: track,
-                        playlist: favorites,
-                      );
+                      return TrackTile(track: track, playlist: favorites);
                     },
                   ),
           ),

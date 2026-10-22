@@ -5,11 +5,7 @@ class ErrorView extends StatelessWidget {
   final String message;
   final VoidCallback onRetry;
 
-  const ErrorView({
-    super.key,
-    required this.message,
-    required this.onRetry,
-  });
+  const ErrorView({super.key, required this.message, required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +37,9 @@ class ErrorView extends StatelessWidget {
               message,
               style: TextStyle(
                 fontSize: 14,
-                color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
+                color: theme.textTheme.bodyMedium?.color?.withValues(
+                  alpha: 0.7,
+                ),
               ),
               textAlign: TextAlign.center,
             ),
@@ -53,7 +51,10 @@ class ErrorView extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: theme.colorScheme.primary,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
